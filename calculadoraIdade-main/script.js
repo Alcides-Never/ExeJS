@@ -41,13 +41,13 @@
 
         let anoAtual = new Date().getFullYear();
 
-        if (diaNascimentoRecebido > 31 || diaNascimentoRecebido < 0){
+        if (diaNascimentoRecebido > 31 || diaNascimentoRecebido < 0 || diaNascimentoRecebido == ''){
             alert("Dia Invalido");
             return
-        } else if (mesNascimentoRecebido > 12 || mesNascimentoRecebido < 0 ){
+        } else if (mesNascimentoRecebido > 12 || mesNascimentoRecebido < 0 || mesNascimentoRecebido == null){
             alert("Mês Invalido");
             return
-        } else if(anoNascimentoRecebido > anoAtual){
+        } else if(anoNascimentoRecebido > anoAtual || anoNascimentoRecebido == null){
             alert("Ano Inválido")
         }
 
@@ -62,6 +62,12 @@
         return valoresRecebidos;        
     }
     
-    function calculoIdade(){
+    function calculoIdade(valoresRecebidos.ano){
+
+        let anoAtual = new Date().getFullYear();
+
+        let idade = ano - anoAtual
+
+        console.log(idade)
         
     }
