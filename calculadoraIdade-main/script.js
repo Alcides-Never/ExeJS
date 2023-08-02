@@ -27,7 +27,11 @@
         
         //Passo 1
         let usuario = receberValores();
-        let teste = calculoIdade();
+        
+        let idadeUsuario = calculoIdade(usuario.dia, usuario.mes, usuario.ano);
+        
+        let faixaIdade = gerarFaixaIdade(idadeUsuario)
+
 
 
     }
@@ -44,11 +48,12 @@
         if (diaNascimentoRecebido > 31 || diaNascimentoRecebido < 0 || diaNascimentoRecebido == ''){
             alert("Dia Invalido");
             return
-        } else if (mesNascimentoRecebido > 12 || mesNascimentoRecebido < 0 || mesNascimentoRecebido == null){
+        } else if (mesNascimentoRecebido > 12 || mesNascimentoRecebido < 0 || mesNascimentoRecebido == ''){
             alert("Mês Invalido");
             return
-        } else if(anoNascimentoRecebido > anoAtual || anoNascimentoRecebido == null){
+        } else if(anoNascimentoRecebido > anoAtual || anoNascimentoRecebido == ''){
             alert("Ano Inválido")
+            return
         }
 
         let valoresRecebidos = {
@@ -62,12 +67,27 @@
         return valoresRecebidos;        
     }
     
-    function calculoIdade(valoresRecebidos.ano){
+    function calculoIdade(dia, mes, ano){
 
         let anoAtual = new Date().getFullYear();
 
-        let idade = ano - anoAtual
 
-        console.log(idade)
+        let idadeAno = anoAtual - ano
+
+
+        console.log(idadeAno)
+
+        return idadeAno
         
+    }
+    function gerarFaixaIdade(idade){
+        if(idade == 0 || idade <=12){
+            console.log("Criança")
+        } else if( idade > 12 || idade <= 17){
+            console.log("Adolescente")
+        } else if( idade > 17 || idade <= 65){
+            console.log("Adulto")
+        } else {
+            console.log("Idoso")
+        }
     }
