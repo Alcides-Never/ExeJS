@@ -30,9 +30,13 @@
         
         let idadeUsuario = calculoIdade(usuario.dia, usuario.mes, usuario.ano);
         
-        let faixaIdade = gerarFaixaIdade(idadeUsuario)
+        let faixaIdade = gerarFaixaIdade(idadeUsuario);
 
+        // console.log(faixaIdade);
 
+        let teste = organizarDados(usuario, idadeUsuario, faixaIdade)
+
+        teste2(teste)
 
     }
 
@@ -63,7 +67,7 @@
             ano: anoNascimentoRecebido
         }
 
-        console.log(valoresRecebidos)
+        // console.log(valoresRecebidos)
         return valoresRecebidos;        
     }
     
@@ -75,19 +79,75 @@
         let idadeAno = anoAtual - ano
 
 
-        console.log(idadeAno)
+        // console.log(idadeAno)
 
         return idadeAno
         
     }
     function gerarFaixaIdade(idade){
-        if(idade == 0 || idade <=12){
-            console.log("Criança")
-        } else if( idade > 12 || idade <= 17){
-            console.log("Adolescente")
-        } else if( idade > 17 || idade <= 65){
-            console.log("Adulto")
+        if(idade >= 0 && idade <= 12){
+            return ("Criança")
+        } else if( idade > 12 && idade <= 17){
+            return ("Adolescente")
+        } else if( idade > 17 && idade <= 65){
+            return ("Adulto")
         } else {
-            console.log("Idoso")
+            return ("Idoso")
         }
     }
+
+
+    // 4. Organizar o objeto pessoa para salvar na lista
+    function organizarDados(dadoRecebido, idadeRecebida, faixaRecebida){
+
+        let dadosAtualizados = { 
+            nome: dadoRecebido.nome,
+            dataNascimento: `${dadoRecebido.dia} / ${dadoRecebido.mes} / ${dadoRecebido.ano}`,
+            idade: idadeRecebida,
+            faixa: faixaRecebida
+        }   
+
+        console.log(dadosAtualizados)
+
+        return dadosAtualizados
+
+    }
+
+    function teste2(){
+        let listaUsuarios = []
+
+        if(localStorage.getItem("idadeUsuario") != null)
+        listaUsuarios = JSON.parse.apply(localStorage.getItem("idadeUsuario"))
+    }
+
+    
+
+
+
+
+
+
+    function cadastrarUsuario(dadosUsuario){
+        let listaUsuarios = []
+    
+        //Este comando insere o dado no base do navegador
+        // localStorage.setItem("nomeUsuario", "Thiago")
+    
+        // if(localStorage.getItem("usuariosCadastrados") != mull ){
+        //     listaUsuarios = localStorage.getItem("usuariosCadastrados") 
+        // }
+    
+    
+        //Se houver uma lista de usuarios no locaStorage, carrega isso para variavel listaUsuarios
+        if(localStorage.getItem("usuariosCadastrados") != null ){
+            listaUsuarios = JSON.parse(localStorage.getItem("usuariosCadastrados")) 
+        }
+    
+        //Adiciona o usuario na lista de usuarios
+        listaUsuarios.push(dadosUsuario)
+    
+        // salva a listaUsuarios no localStorage
+        localStorage.setItem("usuariosCadastrados", JSON.stringify(listaUsuarios))
+    
+    }
+    
